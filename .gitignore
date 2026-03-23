@@ -1,0 +1,17 @@
+# Python environments
+venv/
+env/
+.env
+
+# MacOS files
+.DS_Store
+
+# Temporary / Cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs and Editors
+.vscode/
+.idea/Experiment.ipynb
+Notebook_Experiments/

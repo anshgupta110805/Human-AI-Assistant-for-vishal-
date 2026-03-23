@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Human Voice AI Assistant - Ethereal Core</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #131313;
+            color: #E5E2E1;
+            margin: 0;
+            overflow: hidden;
+        }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(42, 42, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .refractive-edge {
+            border-top: 1px solid rgba(141, 144, 160, 0.2);
+        }
+        .ambient-glow {
+            box-shadow: 0 0 40px rgba(173, 198, 255, 0.08);
+        }
+        .scale-95-on-click:active {
+            transform: scale(0.95);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "surface-container": "#201f1f",
+                        "on-secondary-container": "#b7b5b4",
+                        "surface-container-highest": "#353534",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#002f33",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-primary": "#002e69",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-container": "#00285c",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#00363a",
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#00a0aa",
+                        "secondary-container": "#474746",
+                        "background": "#131313",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "on-primary-fixed": "#001a41",
+                        "tertiary": "#00dbe9",
+                        "surface-tint": "#adc6ff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#005bc1",
+                        "outline": "#8b90a0",
+                        "secondary": "#c8c6c5",
+                        "primary": "#adc6ff",
+                        "surface-bright": "#393939",
+                        "on-tertiary-fixed": "#002022",
+                        "outline-variant": "#414755",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-fixed-variant": "#004493",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#303030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-container": "#4b8eff",
+                        "tertiary-fixed": "#7df4ff",
+                        "on-secondary-fixed": "#1b1b1c"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-[#1C1B1B] flex flex-col py-8 px-6 gap-8 z-50">
+<div class="px-2">
+<h1 class="text-2xl font-bold tracking-tight text-[#E5E2E1] font-headline">Human Voice AI</h1>
+<p class="text-xs font-medium text-on-surface-variant/50 uppercase tracking-widest mt-1">Ambient Intelligence</p>
+</div>
+<nav class="flex-1 flex flex-col gap-4">
+<!-- Active Navigation -->
+<button class="flex items-center gap-3 text-[#ADC6FF] font-semibold relative before:content-[''] before:absolute before:-left-4 before:w-1.5 before:h-1.5 before:bg-[#ADC6FF] before:rounded-full before:shadow-[0_0_8px_#ADC6FF] py-2 px-2 rounded-lg hover:bg-[#353534] transition-all duration-300 scale-95-on-click">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label">New Chat</span>
+</button>
+<button class="flex items-center gap-3 text-[#E5E2E1]/60 hover:text-[#E5E2E1] py-2 px-2 rounded-lg hover:bg-[#353534] transition-all duration-300 scale-95-on-click">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label">History</span>
+</button>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOyESGIWBRD5B-LJmvX8wkiWWxquAT0XoivyR4ZPTw9_j-p8SAp2ErZhgfas0p7dvDXXydKu_3NnU4EG7HDy_0xkjbi7WmSVFbkcfrus82uEFQwyldoiumSt-W2ohgvlkJXgKBAU86FzTiEP6OxUkPWleuxDVZvLlQX6LaDME2pURKkXvYHsd9Su-k-SLpMBqVr-0WEvZ12jwC46a8E_CHAqmV2HYdQLAv6FBDjSM9Q-67um_cZB4sICJHQOwhaSgrX3HkD13k6Gw"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold truncate">Alex Rivers</span>
+<span class="text-[10px] text-on-surface-variant truncate">alex@cortex.ai</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Stage -->
+<main class="ml-64 min-h-screen flex flex-col relative bg-surface">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 flex justify-between items-center px-12 bg-transparent backdrop-blur-xl">
+<div class="flex items-center">
+<span class="text-lg font-medium tracking-widest text-[#E5E2E1] uppercase font-headline">Human Voice AI</span>
+</div>
+<div class="flex items-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-[#E5E2E1] rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Chat Container -->
+<section class="flex-1 overflow-y-auto px-8 py-24 max-w-5xl mx-auto w-full space-y-12">
+<!-- Welcome State -->
+<div class="text-center py-10">
+<h2 class="text-5xl font-bold font-headline mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary via-tertiary to-primary-container">
+                    Quantum Intelligence.
+                </h2>
+<p class="text-on-surface-variant max-w-md mx-auto text-lg font-light leading-relaxed">
+                    Begin your multi-dimensional query process with our ambient neural fabric.
+                </p>
+</div>
+<!-- Chat Interaction -->
+<div class="space-y-10">
+<!-- User Message -->
+<div class="flex justify-end ml-auto max-w-[84%]">
+<div class="bg-primary-container text-on-primary-container px-6 py-4 rounded-xl rounded-tr-none shadow-lg">
+<p class="text-sm font-medium leading-relaxed">Can you explain your multi-model architecture and how you switch between modes?</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex gap-6 max-w-full">
+<div class="w-px h-auto bg-tertiary flex-shrink-0"></div>
+<div class="flex-1 space-y-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-tertiary font-headline">Voice Assistant • Response</span>
+</div>
+<p class="text-on-surface text-lg leading-relaxed font-light">
+                            My architecture utilizes an <span class="text-tertiary font-semibold">Ambient Neural Fabric</span> that dynamically reroutes computational logic based on the intent of your query.
+                        </p>
+<!-- Simplified Model Display -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+<div class="glass-panel p-6 rounded-xl refractive-edge hover:bg-surface-container-high transition-all group">
+<h3 class="font-headline text-xl font-bold mb-2">Creative Synthesis</h3>
+<p class="text-sm text-on-surface-variant leading-snug">Optimized for semantic mapping and abstract problem-solving.</p>
+</div>
+<div class="glass-panel p-6 rounded-xl refractive-edge hover:bg-surface-container-high transition-all group">
+<h3 class="font-headline text-xl font-bold mb-2">Logical Precision</h3>
+<p class="text-sm text-on-surface-variant leading-snug">High-accuracy core for data analysis and technical validation.</p>
+</div>
+</div>
+<p class="text-on-surface leading-relaxed">
+                            The system maintains a seamless interface. When you engage a specific domain, the neural fabric adjusts without manual intervention.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Spacer for Input Area -->
+<div class="h-32"></div>
+</section>
+<!-- Floating Input Field -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-3xl px-8">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-tertiary/20 rounded-full blur opacity-25 group-focus-within:opacity-100 transition duration-1000"></div>
+<!-- Wave Visualization -->
+<div class="flex items-center justify-center gap-1 mb-4 opacity-60">
+<div class="w-1 h-3 bg-tertiary rounded-full animate-pulse"></div>
+<div class="w-1 h-6 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.1s"></div>
+<div class="w-1 h-4 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-1 h-8 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.3s"></div>
+<div class="w-1 h-5 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+<div class="w-1 h-2 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+</div>
+<div class="relative bg-surface-container-lowest flex items-center gap-4 px-6 py-4 rounded-full shadow-2xl">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder-on-surface-variant/40 font-body text-base" placeholder="Speak to the Assistant..." type="text"/>
+<div class="flex items-center gap-3">
+<button class="p-3 bg-tertiary/20 text-tertiary hover:bg-tertiary/30 rounded-full transition-all scale-95-on-click flex items-center justify-center shadow-[0_0_15px_rgba(0,219,233,0.3)]">
+<span class="material-symbols-outlined" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<button class="bg-primary hover:bg-primary-container text-on-primary p-2 rounded-full transition-all scale-95-on-click flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_upward" style="font-variation-settings: 'wght' 600;">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-4 flex justify-center gap-6 text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-[0.25em]">
+<span>Human Voice v1.0.0</span>
+<span>•</span>
+<span>Latent Space Active</span>
+<span>•</span>
+<span>End-to-End Neural Encryption</span>
+</div>
+</div>
+</main>
+<!-- Visual Polish: Ambient Glow Background -->
+<div class="fixed top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-primary/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[-10%] right-[-5%] w-[30vw] h-[30vw] bg-tertiary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+</body></html>
